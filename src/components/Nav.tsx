@@ -33,11 +33,14 @@ export function Nav() {
   const close = () => setOpen(false);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled || open
-          ? 'border-b border-line/70 bg-bg/60 backdrop-blur-xl'
-          : 'border-b border-transparent bg-transparent'
+        open
+          ? 'border-b border-transparent bg-[#090909]'
+          : scrolled
+            ? 'border-b border-line/70 bg-bg/60 backdrop-blur-xl'
+            : 'border-b border-transparent bg-transparent'
       }`}
     >
       <nav aria-label="Primary" className="section-shell flex h-20 items-center justify-between">
@@ -88,9 +91,11 @@ export function Nav() {
         </button>
       </nav>
 
+    </header>
+
       <div
         id="mobile-menu"
-        className={`fixed inset-x-0 bottom-0 top-20 bg-bg/95 backdrop-blur-xl transition-all duration-500 lg:hidden ${
+        className={`fixed inset-0 top-20 z-50 h-[calc(100svh-5rem)] overflow-y-auto bg-[#090909] transition-all duration-500 lg:hidden ${
           open ? 'visible opacity-100' : 'invisible opacity-0'
         }`}
         aria-hidden={!open}
@@ -123,6 +128,6 @@ export function Nav() {
           ))}
         </ul>
       </div>
-    </header>
+    </>
   );
 }
